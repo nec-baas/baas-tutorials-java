@@ -1,0 +1,38 @@
+apply plugin: 'java'
+apply plugin: 'application'
+
+sourceCompatibility = 1.8
+version = '1.0'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: '*.jar')
+
+    implementation 'commons-logging:commons-logging:1.2'
+    implementation 'com.squareup.okhttp3:okhttp:3.10.0'
+    implementation 'com.fasterxml.jackson.core:jackson-core:2.9.4'
+
+    testImplementation 'junit:junit:4.12'
+}
+
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}
+
+mainClassName = "com.nec.baas.Main"
+
+jar {
+    from configurations.compileClasspath.collect {
+        it.isDirectory() ? it : zipTree(it)
+    }
+    manifest {
+        mainAttributes "Main-Class" : mainClassName
+    }
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '4.6'
+}
