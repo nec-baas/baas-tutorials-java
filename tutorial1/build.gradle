@@ -9,11 +9,7 @@ repositories {
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: '*.jar')
-
-    implementation 'commons-logging:commons-logging:1.2'
-    implementation 'com.squareup.okhttp3:okhttp:3.10.0'
-    implementation 'com.fasterxml.jackson.core:jackson-core:2.9.4'
+    implementation 'com.nec.baas:baas-client-core:7.0.0'
 
     testImplementation 'junit:junit:4.12'
 }
